@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
     /**
-     * Called when the user clicks on the positive button of the Create Task Dialog.
+     * Called when the user clicks on the positive button of the Create TaskDao Dialog.
      *
      * @param dialogInterface the current displayed dialog
      */
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
     /**
-     * Shows the Dialog for adding a Task
+     * Shows the Dialog for adding a TaskDao
      */
     private void showAddTaskDialog() {
         final AlertDialog dialog = getAddTaskDialog();

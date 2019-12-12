@@ -1,5 +1,9 @@
 package com.cleanup.todoc.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -10,15 +14,22 @@ import java.util.Comparator;
  *
  * @author Gaëtan HERFRAY
  */
+@Entity(foreignKeys = @ForeignKey(entity = Project.class, parentColumns = "id",
+childColumns = "project_id"), tableName = "tasks")
 public class Task {
     /**
      * The unique identifier of the task
      */
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
     private long id;
 
     /**
      * The unique identifier of the project associated to the task
      */
+    @NonNull
+    @ColumnInfo(name = "project_id")
     private long projectId;
 
     /**
@@ -27,15 +38,17 @@ public class Task {
     // Suppress warning because setName is called in constructor
     @SuppressWarnings("NullableProblems")
     @NonNull
+    @ColumnInfo(name = "name")
     private String name;
 
     /**
      * The timestamp when the task has been created
      */
+    @ColumnInfo( name = "creationTimestamp")
     private long creationTimestamp;
 
     /**
-     * Instantiates a new Task.
+     * Instantiates a new TaskDao.
      *
      * @param id                the unique identifier of the task to set
      * @param projectId         the unique identifier of the project associated to the task to set
@@ -112,6 +125,14 @@ public class Task {
      */
     private void setCreationTimestamp(long creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
+    }
+
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public long getCreationTimestamp() {
+        return creationTimestamp;
     }
 
     /**
