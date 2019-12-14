@@ -19,6 +19,12 @@ android {
     lintOptions {
         disable 'RestrictedApi'
     }
+
+    // Ensure the compatibility with java and the use of the lambdas
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {

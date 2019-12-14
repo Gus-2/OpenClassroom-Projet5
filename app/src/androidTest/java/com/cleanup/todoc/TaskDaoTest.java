@@ -15,13 +15,16 @@ import org.junit.runner.RunWith;
 
 import static com.cleanup.todoc.DataInterface.project1;
 import static com.cleanup.todoc.DataInterface.project2;
+import static com.cleanup.todoc.DataInterface.task1;
+import static com.cleanup.todoc.DataInterface.task2;
+import static com.cleanup.todoc.DataInterface.task3;
 import static org.junit.Assert.assertEquals;
 
 /**
  * Created by de Meeûs Augustin on 2019-12-12
  **/
 @RunWith(AndroidJUnit4.class)
-public class ProjectDaoTest {
+public class TaskDaoTest {
 
     private TodocDatabase database;
 
@@ -42,12 +45,37 @@ public class ProjectDaoTest {
     }
 
     @Test
-    public void testGetAllTheProjects() throws InterruptedException{
+    public void testGetAllTheTasks() throws InterruptedException{
         database.projectDao().insertProject(project1);
-        assertEquals(1, LiveDataTestUtil.getValue(database.projectDao().getAllProjects()).size());
-
-
         database.projectDao().insertProject(project2);
-        assertEquals(2, LiveDataTestUtil.getValue(database.projectDao().getAllProjects()).size());
+
+        database.taskDao().insertTask(task1);
+        database.taskDao().insertTask(task2);
+        database.taskDao().insertTask(task3);
+
+        assertEquals(3, LiveDataTestUtil.getValue(database.taskDao().getAllTask()).size());
     }
+
+    @Test
+    public void testDeleteTask() throws InterruptedException{
+        database.projectDao().insertProject(project1);
+        database.projectDao().insertProject(project2);
+
+        database.taskDao().insertTask(task1);
+        database.taskDao().insertTask(task2);
+        database.taskDao().insertTask(task3);
+
+        database.taskDao().deleteTask(((int) task1.getId()));
+
+        assertEquals(2, LiveDataTestUtil.getValue(database.taskDao().getAllTask()).size());
+
+        database.taskDao().deleteTask(((int) task2.getId()));
+
+        assertEquals(1, LiveDataTestUtil.getValue(database.taskDao().getAllTask()).size());
+
+    }
+
+
+
+
 }

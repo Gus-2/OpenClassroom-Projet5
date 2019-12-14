@@ -29,7 +29,7 @@ public class Task {
      * The unique identifier of the project associated to the task
      */
     @NonNull
-    @ColumnInfo(name = "project_id")
+    @ColumnInfo(name = "project_id", index = true)
     private long projectId;
 
     /**
