@@ -28,7 +28,7 @@ public class ItemViewModel  extends ViewModel {
     }
 
     // For Project
-    public LiveData<List<Project>> getListProject(){
+    public List<Project> getListProject(){
         return projectDataRepository.getAllProjects();
     }
 
@@ -39,8 +39,8 @@ public class ItemViewModel  extends ViewModel {
     }
 
     // For Task
-    public List<Task> getAllTask(){
-        return this.taskDataRepository.getAllTasks().getValue();
+    public LiveData<List<Task>> getAllTask(){
+        return this.taskDataRepository.getAllTasks();
     }
 
     public void insertTask(Task task){
