@@ -44,10 +44,10 @@ public class ProjectDaoTest {
     @Test
     public void testGetAllTheProjects() throws InterruptedException{
         database.projectDao().insertProject(project1);
-        assertEquals(1, LiveDataTestUtil.getValue(database.projectDao().getAllProjects()).size());
+        assertEquals(1, database.projectDao().getAllProjects().size());
 
 
         database.projectDao().insertProject(project2);
-        assertEquals(2, LiveDataTestUtil.getValue(database.projectDao().getAllProjects()).size());
+        assertEquals(2, database.projectDao().getAllProjects().size());
     }
 }

@@ -122,13 +122,9 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                             MainActivity.this.tasks = tasks;
                         }
                         updateTasks(tasks);
-
-
                     }
                 }
         );
-
-
 
         adapter = new TasksAdapter( allProjects, MainActivity.this);
 

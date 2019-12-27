@@ -44,7 +44,7 @@ public class Task {
     /**
      * The timestamp when the task has been created
      */
-    @ColumnInfo( name = "creationTimestamp")
+    @ColumnInfo( name = "creation_timestamp")
     private long creationTimestamp;
 
     /**

@@ -49,11 +49,14 @@ public class TaskDaoTest {
         database.projectDao().insertProject(project1);
         database.projectDao().insertProject(project2);
 
-        //database.taskDao().insertTask(task1);
-        //database.taskDao().insertTask(task2);
-        //database.taskDao().insertTask(task3);
-
         assertEquals(0, LiveDataTestUtil.getValue(database.taskDao().getAllTask()).size());
+
+        database.taskDao().insertTask(task1);
+        database.taskDao().insertTask(task2);
+        database.taskDao().insertTask(task3);
+
+        assertEquals(3, LiveDataTestUtil.getValue(database.taskDao().getAllTask()).size());
+
     }
 
     @Test
