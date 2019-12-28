@@ -1,8 +1,11 @@
 package com.cleanup.todoc;
 
+import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +21,16 @@ import static org.junit.Assert.assertSame;
  * @author Gaëtan HERFRAY
  */
 public class TaskUnitTest {
+
+    Project[] projects = new Project[]{
+            new Project(1, "Projet Tartampion", 0xFFEADAD1),
+            new Project(2, "Projet Lucidia", 0xFFB4CDBA),
+            new Project(3, "Projet Circus", 0xFFA3CED2),
+    };
+
+    @Rule
+    public ExpectedException exceptionRule = ExpectedException.none();
+
     @Test
     public void test_projects() {
         final Task task1 = new Task(1, 1, "task 1", new Date().getTime());
@@ -25,10 +38,11 @@ public class TaskUnitTest {
         final Task task3 = new Task(3, 3, "task 3", new Date().getTime());
         final Task task4 = new Task(4, 4, "task 4", new Date().getTime());
 
-        assertEquals("Projet Tartampion", task1.getProject().getName());
-        assertEquals("Projet Lucidia", task2.getProject().getName());
-        assertEquals("Projet Circus", task3.getProject().getName());
-        assertNull(task4.getProject());
+        assertEquals("Projet Tartampion", projects[(int) task1.getProjectId()-1].getName());
+        assertEquals("Projet Lucidia", projects[(int) task2.getProjectId()-1].getName());
+        assertEquals("Projet Circus", projects[(int) task3.getProjectId()-1].getName());
+        exceptionRule.expect(ArrayIndexOutOfBoundsException.class);
+        assertNull(projects[(int) task4.getProjectId()-1].getName());
     }
 
     @Test
